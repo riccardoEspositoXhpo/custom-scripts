@@ -1,0 +1,13 @@
+# Backs up the list of installed packages to /etc directory
+# Save this script in /usr/share/libalpm/hooks/
+
+[Trigger]
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+When = PostTransaction
+Exec = /bin/sh -c '/usr/bin/pacman -Qqe > /etc/pkglist.txt'
+
