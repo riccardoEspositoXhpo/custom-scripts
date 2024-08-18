@@ -8,8 +8,8 @@ read REPO_ID
 
 REPO=https://github.com/"$REPO_USER_ID"/"${REPO_ID}".git
 echo "Cloning new git repo into temporary folder."
-git clone --separate-git-dir=$HOME/.dotfiles $REPO dotfile-restore-backup
+git clone --separate-git-dir=$HOME/.dotfiles $REPO $HOME/dotfile-restore-backup
 
 echo "Migrating configs in $HOME directory"
-rsync --recursive --verbose --exclude '.git' dotfile-restore-backup/ $HOME/
-rm -rf dotfile-restore-backup
+rsync --recursive --verbose --exclude '.git' $HOME/dotfile-restore-backup/ $HOME/
+rm -rf $HOME/dotfile-restore-backup

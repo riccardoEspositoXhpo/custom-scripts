@@ -10,4 +10,3 @@ Target = *
 [Action]
 When = PostTransaction
 Exec = /bin/sh -c '/usr/bin/pacman -Qqe > /etc/pkglist.txt'
-
