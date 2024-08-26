@@ -1,0 +1,12 @@
+# List of dependencies to install zsh
+zsh
+git
+oh-my-zsh-git
+zsh-theme-powerlevel10k-git
+zsh-syntax-highlighting
+zsh-autosuggestions
+rmtrash
+pokemon-colorscripts-git
+eza
+zoxide
+neovim
