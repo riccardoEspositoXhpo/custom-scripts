@@ -1,4 +1,3 @@
-# List of dependencies to install zsh
 zsh
 git
 oh-my-zsh-git
@@ -10,3 +9,5 @@ pokemon-colorscripts-git
 eza
 zoxide
 neovim
+bat
+wl-clipboard
