@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Installs git helpers to local bin folder
+# TODO: Note, this can be re-run on every update of linux-toolkit bro
 
 # Set PATH so it includes user's private bin and ensure it exists
 LOCAL_BIN="$HOME/.local/bin"
@@ -18,7 +19,7 @@ for file in "$SCRIPTS_DIR"/*.sh; do
     # Remove the .sh extension from the filename
     filename=$(basename "$file" .sh)
     
-    # Copy the file to the local bin path with the new name and make it executable
+    # Symlink file to the local bin path with the new name and make it executable
     cp "$file" "$LOCAL_BIN/$filename"
     chmod +x "$LOCAL_BIN/$filename"
 
