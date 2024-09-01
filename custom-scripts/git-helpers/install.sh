@@ -11,7 +11,7 @@ if [ ! -d "$LOCAL_BIN" ]; then
     PATH="$LOCAL_BIN:$PATH"
 fi
 
-SCRIPTS_DIR="./src"
+SCRIPTS_DIR="./scripts"
 
 shopt -s nullglob
 

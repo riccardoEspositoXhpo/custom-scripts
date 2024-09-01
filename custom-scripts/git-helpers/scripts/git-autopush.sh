@@ -1,9 +1,22 @@
 #!/bin/bash
 
-# source utilities
-source "$LINUXTOOLKITDIR/custom-scripts/utilities.sh"
+###############################################################
+##                      HELPER FUNCTIONS                     ##
+###############################################################
 
-# help menu
+# Function to locate a git repository by name
+find_repo_by_name() {
+    # Use the `find` command to search for a directory with a .git folder and the given name
+    REPO_PATH=$(find / -type d -name "$CUSTOM_REPO_NAME" -exec test -e "{}/.git" ';' -print 2>/dev/null | head -n 1)
+    echo "$REPO_PATH"
+}
+
+
+###############################################################
+##                         HELP MENU                         ##
+###############################################################
+
+
 usage() {
     echo "This script automagically pushes all modified data to a git repository."
     echo "Usage: $0 [options]"
@@ -12,6 +25,11 @@ usage() {
     echo "  --repo          Repository to pull. Defaults to current directory. Will attempt to locate it on the system via the .git folder"
     exit 0
 }
+
+###############################################################
+##                           MAIN                            ##
+###############################################################
+
 
 # initialize variables
 IS_CUSTOM_REPO=false
@@ -36,7 +54,7 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 # set default directory for git
-REPO_PATH="$(dirname "$(realpath "$0")")"
+REPO_PATH="$(pwd)"
 
 # Check if a repository name was passed as an argument
 if [ "$IS_CUSTOM_REPO" = true ]; then
