@@ -11,3 +11,11 @@
 - should contain a large archinstall script done by myself
 - should contain modularized installers for features, applications, etc. - should be driven by config.
 - can be run as single modules, no need to panic
+
+
+## Implementation 
+
+- the idea is there are a bunch of files here for config that I am storing
+- I don´t really want to symlink all of them as they don't change as often
+- create update script that takes a list of files, it will search for them and copy them to the correct location.
+- I probably need a json config file that stores file names and file locations so I can easily drop them and update them - requires sudo tho.
