@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "../utilities.sh"
+source "../helpers/utilities.sh"
 
 script_init
 

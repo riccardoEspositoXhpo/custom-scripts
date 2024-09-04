@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# does this work?
-source "../utilities.sh"
+source "../helpers/utilities.sh"
 
 script_init 
 install_dependencies

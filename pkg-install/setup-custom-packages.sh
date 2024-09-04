@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "./utilities.sh"
+source "./helpers/utilities.sh"
 
 echo "Starting package and configuration installation"
 

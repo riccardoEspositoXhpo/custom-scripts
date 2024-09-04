@@ -197,7 +197,7 @@ install_file() {
         # Check if the issue is related to permissions
         if [[ $? -ne 0 ]]; then
             echo "Failed to install $target_file, likely due to lack of permissions."
-            read -p "The target file cannot be overwritten. Do you want to proceed with elevated permissions? (Y/y to proceed): " response
+            read -p "The target file cannot be overwritten. Do you want to proceed with elevated permissions? (Y/y to proceed): " response < /dev/tty
 
             if [[ "$response" =~ ^[Yy]$ ]]; then
                 # Re-run the command with sudo
@@ -218,38 +218,44 @@ install_file() {
     fi
 }
 
-# installs every configuration file found in ./config directory according to directories and permissions found in the file header.
+
+# install configurations in the target directory based on a metadata file containing source and target location, and permissions.
 install_configs() {
     # Get the path to the current script's directory
     local SCRIPT_DIR=$(dirname "$(realpath "$0")")
     local CONFIG_DIR="$SCRIPT_DIR/config"
+    local METADATA_FILE="$CONFIG_DIR/metadata.txt"
 
-    # Ensure the config directory exists
+    # add newline to file if it doesn't exist. Necessary to use read command
+    sed -i -e '$a\' $METADATA_FILE
+
+    # Ensure the config directory and metadata file exist
     if [ ! -d "$CONFIG_DIR" ]; then
         echo "No config directory found in $SCRIPT_DIR"
         return 1
     fi
 
-    # Loop through all files in the config directory
-    for config_file in "$CONFIG_DIR"/*; do
-        # Read the metadata at the top of the config file
-        local TARGET_DIR=$(grep '^# Target Directory:' "$config_file" | cut -d ' ' -f 4-)
-        local PERMISSIONS=$(grep '^# Permissions:' "$config_file" | cut -d ' ' -f 3-)
+    if [ ! -f "$METADATA_FILE" ]; then
+        echo "Metadata file not found in $CONFIG_DIR"
+        return 1
+    fi
 
-        # Extract the filename from the config file
-        local FILE_NAME=$(basename "$config_file")
+    # Loop through each line of the metadata file
+    while IFS=' ' read -r src_file tgt_file permissions; do
+        # Skip empty lines or comments
+        [[ -z "$src_file" || "$src_file" == \#* ]] && continue
 
-        # Check if target directory and permissions were found
-        if [ -z "$TARGET_DIR" ] || [ -z "$PERMISSIONS" ]; then
-            echo "Skipping $config_file: Missing Target Directory or Permissions metadata."
+        # Construct the full path to the source file
+        local SRC_PATH="$CONFIG_DIR/$src_file"
+
+        # Check if the source file exists
+        if [ ! -f "$SRC_PATH" ]; then
+            echo "Source file not found: $SRC_PATH"
             continue
         fi
 
-        # Construct the full target path
-        local TARGET_PATH="$TARGET_DIR/$FILE_NAME"
-
         # Install the config file to the target path with specified permissions
-        echo "Installing $config_file to $TARGET_PATH with permissions $PERMISSIONS"
-        install_file  "$config_file" "$TARGET_PATH" "install -C -D -m $PERMISSIONS"
-    done
+        echo "Installing $SRC_PATH to $tgt_file with permissions $permissions"
+        install_file "$SRC_PATH" "$tgt_file" "install -C -D -m $permissions"
+    done < "$METADATA_FILE"
 }

@@ -1,1 +1,6 @@
+github-cli
+aur-helper
+zsh
+paccache
 reflector
+timeshift
