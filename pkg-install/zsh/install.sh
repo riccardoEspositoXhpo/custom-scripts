@@ -3,14 +3,8 @@
 # does this work?
 source "../utilities.sh"
 
-# Trap SIGINT (Ctrl+C) and clean up
-trap 'echo "Script interrupted. Cleaning up..."; kill 0; exit 1' SIGINT
-
-# TODO: I literally have no clue how to climb up
-echo "Beginning $(dirname $0) install..." # it should print zsh
-
+script_init
 install_dependencies
-
 
 setup_dotfiles() {
     echo "Setting up dotfiles repo"
@@ -30,7 +24,7 @@ no_setup() {
 echo "Cloning configuration files"
 
 prompt_options  "Would you like to clone dotfile configs and set up symlinks?" \
-    "Yes" setup_dotfiles
+    "Yes" setup_dotfiles \
     "No"  no_setup
 
 echo "It is suggested to start a new terminal session to see all changes reflected."

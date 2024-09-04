@@ -17,7 +17,6 @@ else
     echo  "No aur helper detected. Proceeding to next step"
 fi
 
-
 # define custom functions for answer
 install_yay() {
     echo "Installing yay"

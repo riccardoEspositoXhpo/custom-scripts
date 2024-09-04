@@ -1,4 +1,4 @@
 github-cli - WORKS
 aur-helper - WORKS
-zsh
-paccache
+zsh - WORKS
+paccache - WORKS
