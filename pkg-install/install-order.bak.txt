@@ -1,0 +1,4 @@
+github-cli - WORKS
+aur-helper - WORKS
+zsh
+paccache

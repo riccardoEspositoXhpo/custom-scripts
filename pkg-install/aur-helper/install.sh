@@ -1,31 +1,42 @@
 #!/bin/bash
 
-VALID_OPTION=false
-while [["$VALID_OPTION" == false]]; do
-    echo "Which aur helper would you like to install?"
-    echo "1 - yay"
-    echo "2 - paru"
+source "../utilities.sh"
 
-    read ANSWER
+script_init
 
-    if [[ $ANSWER -eq [1]]]; then
-        $VALID_OPTION=true
-        echo "Installing yay"
-        git clone https://aur.archlinux.org/yay.git ~/yay
-        makepkg -C ~/yay -si
-        aurhelper="yay" 
+echo "Trying to detect existing aur helper installation"
+if pacman -Qi yay &>/dev/null ; then
+    aurhelper="yay"
+    echo "Detected aur helper $aurhelper. Exiting script successfully"
+    script_exit
+elif pacman -Qi paru &>/dev/null ; then
+    aurhelper="paru"
+    echo "Detected aur helper $aurhelper. Exiting script successfully"
+    script_exit
+else
+    echo  "No aur helper detected. Proceeding to next step"
+fi
 
-    elif [[ $ANSWER -eq [2]]]; then
-        $VALID_OPTION=true
-        echo "Installing paru"
-        sudo pacman -S --needed base-devel
-        git clone https://aur.archlinux.org/paru.git ~/paru
-        makepkg -C ~/paru -si
-        aurhelper="paru"
 
-    else 
-        echo "Invalid option $ANSWER, please pass 1 or 2 or terminate the script."
-    fi
-done
+# define custom functions for answer
+install_yay() {
+    echo "Installing yay"
+    git clone https://aur.archlinux.org/yay.git ~/yay
+    makepkg -C ~/yay -si
+    aurhelper="yay" 
+}
 
-echo "$aurhelper successfully installed.
+install_paru() {
+    echo "Installing paru"
+    sudo pacman -S --needed base-devel
+    git clone https://aur.archlinux.org/paru.git ~/paru
+    makepkg -C ~/paru -si
+    aurhelper="paru"
+}
+
+
+prompt_options "Which AUR helper would you like to install?" \
+    "yay" install_yay \
+    "paru" install_paru
+
+script_exit

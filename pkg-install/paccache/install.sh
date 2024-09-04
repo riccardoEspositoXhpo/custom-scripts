@@ -5,6 +5,5 @@ source "../utilities.sh"
 
 script_init 
 install_dependencies
+script_exit
 
-echo "Installation Complete - Enjoy!"
-exit 0
