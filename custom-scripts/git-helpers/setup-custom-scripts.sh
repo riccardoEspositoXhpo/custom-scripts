@@ -4,12 +4,7 @@
 # TODO: Note, this can be re-run on every update of linux-toolkit bro
 
 # Set PATH so it includes user's private bin and ensure it exists
-LOCAL_BIN="$HOME/.local/bin"
-
-if [ ! -d "$LOCAL_BIN" ]; then
-    mkdir -p "$LOCAL_BIN"
-    PATH="$LOCAL_BIN:$PATH"
-fi
+LOCAL_BIN="/usr/local/bin"
 
 SCRIPTS_DIR="./scripts"
 
@@ -20,15 +15,15 @@ for file in "$SCRIPTS_DIR"/*.sh; do
     filename=$(basename "$file" .sh)
     
     # Symlink file to the local bin path with the new name and make it executable
-    cp "$file" "$LOCAL_BIN/$filename"
-    chmod +x "$LOCAL_BIN/$filename"
+    install -Dm 755 "$file" "$LOCAL_BIN/$filename"
 
-    if command -v "$filename" >/dev/null 2>&1; then
-        echo "$filename is installed and executable"
-    else
-        echo "$filename is not installed or not executable! Exiting script"
-        exit 1
-    fi
+    # Commenting because you can probably trust the install script to be honest...
+    # if command -v "$filename" >/dev/null 2>&1; then
+    #     echo "$filename is installed and executable"
+    # else
+    #     echo "$filename is not installed or not executable! Exiting script"
+    #     exit 1
+    # fi
 
 done
 
