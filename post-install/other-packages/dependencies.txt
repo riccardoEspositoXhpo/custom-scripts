@@ -1,0 +1,15 @@
+pkgstats
+gnome-text-editor
+gnome-screenshot
+gnome-calculator
+evince
+fragments
+loupe
+vlc
+nautilus
+baobab
+gnome-system-monitor
+spotify
+surfshark-client
+visual-studio-code-bin
+google-chrome

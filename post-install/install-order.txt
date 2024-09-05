@@ -4,3 +4,6 @@ zsh
 paccache
 reflector
 timeshift
+deja-dup
+cryptomator
+other-packages

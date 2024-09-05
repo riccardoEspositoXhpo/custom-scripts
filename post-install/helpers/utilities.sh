@@ -61,7 +61,7 @@ install_dependencies() {
     echo "Installing dependencies"
     PACMAN_INSTALLED='/tmp/pacman-installed.txt'
     AUR_INSTALLED='/tmp/aur-installed.txt'
-    DEPENDENCIES="dependencies.txt" # the script assumes that dependencies are stored in the same folder
+    DEPENDENCIES="$(dirname "$(realpath "$0")")/dependencies.txt" # the script assumes that dependencies are stored in the same folder
 
     # add newline to file if it doesn't exist. Necessary to use read command
     sed -i -e '$a\' $DEPENDENCIES
@@ -86,8 +86,8 @@ install_dependencies() {
                 echo "$package is already installed."
             else  
                 # Install the package using pacman
-                sudo pacman -S --needed "$package"
-                echo "$package" >> $PACMAN_INSTALLED
+                sudo pacman -S --needed "$package" < /dev/tty
+                echo "- $package" >> $PACMAN_INSTALLED
             fi
         else
 
@@ -113,8 +113,8 @@ install_dependencies() {
                 if "$aurhelper" -Qs "$package" &> /dev/null; then
                     echo "$package is already installed."
                 else
-                    "$aurhelper" -S --needed --noconfirm "$package"
-                    echo "$package" >> $AUR_INSTALLED
+                    "$aurhelper" -S --needed --noconfirm "$package" < /dev/tty
+                    echo "- $package" >> $AUR_INSTALLED
                 fi
             else
                 echo "Package $package not found either in pacman or in $aurhelper. Please check, skipping for now..."
@@ -126,7 +126,6 @@ install_dependencies() {
     if [ -s "$PACMAN_INSTALLED" ]; then
 
         echo "The following packages were installed with pacman:"
-        # TODO: cat or echo? not sure if I can exit interactively here bro 
         cat $PACMAN_INSTALLED
         echo ""
         rm $PACMAN_INSTALLED
@@ -221,6 +220,7 @@ install_file() {
 
 # install configurations in the target directory based on a metadata file containing source and target location, and permissions.
 install_configs() {
+
     # Get the path to the current script's directory
     local SCRIPT_DIR=$(dirname "$(realpath "$0")")
     local CONFIG_DIR="$SCRIPT_DIR/config"
@@ -258,4 +258,40 @@ install_configs() {
         echo "Installing $SRC_PATH to $tgt_file with permissions $permissions"
         install_file "$SRC_PATH" "$tgt_file" "install -C -D -m $permissions"
     done < "$METADATA_FILE"
+}
+
+
+pause_and_open_app() {
+    
+    app="$1"
+    options="$2"
+    
+    echo "Pausing installation to open $app."
+    echo "Installation instructions provided below:"
+    echo ""
+    echo "$options"
+    echo ""
+
+    echo "Opening $app for you. Once installation is complete, close the application and return here."
+
+    $app
+
+    local VALID_OPTION=false
+    while [[ "$VALID_OPTION" == false ]]; do
+        echo "App was closed. Have you completed the installation?"
+        echo "1 - Yes"
+        echo "2 - No, open $app again for me"
+
+        read -p "Answer: " ANSWER < /dev/tty 
+        
+        if [[ "$ANSWER" = 1 ]]; then
+            VALID_OPTION=true
+        elif [[ "$ANSWER" = 2 ]]; then
+            echo "Opening $app"
+            $app
+        else
+            echo "Invalid option $ANSWER, please choose 1 or 2."
+        fi
+    done
+
 }
