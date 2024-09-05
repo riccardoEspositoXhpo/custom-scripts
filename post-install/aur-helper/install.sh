@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "../helpers/utilities.sh"
+source "$(dirname "$(realpath "$0")")/../helpers/utilities.sh"
 
 script_init
 
@@ -23,6 +23,9 @@ install_yay() {
     git clone https://aur.archlinux.org/yay.git ~/yay
     makepkg -C ~/yay -si
     aurhelper="yay" 
+    echo "Removing install directory for $aurhelper" 
+    rm -rf ~/$aurhelper
+
 }
 
 install_paru() {
@@ -31,11 +34,16 @@ install_paru() {
     git clone https://aur.archlinux.org/paru.git ~/paru
     makepkg -C ~/paru -si
     aurhelper="paru"
+    echo "Removing install directory for $aurhelper" 
+    rm -rf ~/$aurhelper
+
 }
 
 
 prompt_options "Which AUR helper would you like to install?" \
     "yay" install_yay \
     "paru" install_paru
+
+
 
 script_exit

@@ -1,5 +1,0 @@
-github-cli - WORKS
-aur-helper - WORKS
-zsh - WORKS
-paccache - WORKS
-timeshift - 

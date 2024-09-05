@@ -218,25 +218,29 @@ install_file() {
 }
 
 
-# install configurations in the target directory based on a metadata file containing source and target location, and permissions.
-install_configs() {
+
+
+
+# install configurations in the target directory based on a metadata file containing source and target location, and permissions. 
+# Takes the install folder as argument
+install_files() {
 
     # Get the path to the current script's directory
     local SCRIPT_DIR=$(dirname "$(realpath "$0")")
-    local CONFIG_DIR="$SCRIPT_DIR/config"
-    local METADATA_FILE="$CONFIG_DIR/metadata.txt"
+    local ASSET_DIR="$SCRIPT_DIR/$1"
+    local METADATA_FILE="$ASSET_DIR/metadata.txt"
 
     # add newline to file if it doesn't exist. Necessary to use read command
     sed -i -e '$a\' $METADATA_FILE
 
     # Ensure the config directory and metadata file exist
-    if [ ! -d "$CONFIG_DIR" ]; then
+    if [ ! -d "$ASSET_DIR" ]; then
         echo "No config directory found in $SCRIPT_DIR"
         return 1
     fi
 
     if [ ! -f "$METADATA_FILE" ]; then
-        echo "Metadata file not found in $CONFIG_DIR"
+        echo "Metadata file not found in $ASSET_DIR"
         return 1
     fi
 
@@ -246,7 +250,7 @@ install_configs() {
         [[ -z "$src_file" || "$src_file" == \#* ]] && continue
 
         # Construct the full path to the source file
-        local SRC_PATH="$CONFIG_DIR/$src_file"
+        local SRC_PATH="$ASSET_DIR/$src_file"
 
         # Check if the source file exists
         if [ ! -f "$SRC_PATH" ]; then

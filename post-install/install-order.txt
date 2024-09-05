@@ -1,9 +1,38 @@
-github-cli
-aur-helper
-zsh
-paccache
+# This is the installation order file
+# The lines below represent folders in this directory
+# The install.sh script within each folder will be installed sequentially according to the order defined below
+
+# custom scripts are installed first. They have no dependencies until used
+custom-scripts
+
+
+# Custom configuration files such as pacman hooks
+custom-files
+
+# Speed up pacman downloads
 reflector
+
+# This makes git login persistence much easier
+github-cli
+
+# This is necessary to install any AUR package
+aur-helper
+
+# This sets up the shell according to my preference, and copies over the dotfiles repo if required
+zsh
+
+# Clean up pacman cache
+paccache
+
+# BTRFS backups
 timeshift
+
+# Home folder backup and restore
 deja-dup
+
+# Secret folder setup and import
 cryptomator
+
+# Pacman and AUR packages with no particular configuration
 other-packages
+
