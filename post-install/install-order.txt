@@ -6,6 +6,7 @@
 custom-scripts
 
 
+
 # Custom configuration files such as pacman hooks
 custom-files
 
