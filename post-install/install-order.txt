@@ -34,6 +34,9 @@ deja-dup
 # Secret folder setup and import
 cryptomator
 
+# The best power management tool
+auto-cpufreq
+
 # Pacman and AUR packages with no particular configuration
 other-packages
 

@@ -1,5 +1,4 @@
 # Backs up the list of installed packages to /etc directory
-# Save this script in /usr/share/libalpm/hooks/
 
 [Trigger]
 Operation = Install

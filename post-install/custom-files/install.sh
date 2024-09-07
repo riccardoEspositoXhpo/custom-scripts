@@ -1,4 +1,9 @@
 #!/bin/bash
 
-# This should somehow copy the required files in the correct directory bro.
-# HEHEHEHEHE I KNOW HOW TO DO THIS BRO!!!
+source "$(dirname "$(realpath "$0")")/../helpers/utilities.sh"
+
+script_init
+install_files hooks
+install_files files
+install_files cazzosoio
+script_exit

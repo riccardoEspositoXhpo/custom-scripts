@@ -2,9 +2,11 @@
 
 source "$(dirname "$(realpath "$0")")/helpers/utilities.sh"
 
-echo "Linux Toolkit - Post Install"
+echo "Linux Toolkit - Full Install"
 
-INSTALL_ORDER="./install-order.txt"
+# Installer supports a custom install-order file for selective app installation.
+
+INSTALL_ORDER="${1:-./install-order.txt}"
 
 # ensure file ends with a newline
 sed -i -e '$a\' $INSTALL_ORDER

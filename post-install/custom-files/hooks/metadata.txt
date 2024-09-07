@@ -1,0 +1,2 @@
+list-aur-apps.hook /usr/share/libalpm/hooks/list-aur-apps.hook 644
+list-pacman-apps.hook /usr/share/libalpm/hooks/list-pacman-apps.hook 644
