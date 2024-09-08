@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname "$(realpath "$0")")/../helpers/utilities.sh"
+source "$(dirname "$(realpath "$0")")/../../helpers/utilities.sh"
 
 script_init
 

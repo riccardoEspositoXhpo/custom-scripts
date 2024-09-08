@@ -2,19 +2,24 @@
 # The lines below represent folders in this directory
 # The install.sh script within each folder will be installed sequentially according to the order defined below
 
+
+# Absolutely need these 
+essentials
+
+# This makes git login persistence much easier
+github-cli
+
 # custom scripts are installed first. They have no dependencies until used
 custom-scripts
-
-
 
 # Custom configuration files such as pacman hooks
 custom-files
 
+# Infrastructure for async cron jobs
+cron
+
 # Speed up pacman downloads
 reflector
-
-# This makes git login persistence much easier
-github-cli
 
 # This is necessary to install any AUR package
 aur-helper

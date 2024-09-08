@@ -26,6 +26,12 @@ prompt_options  "Would you like to clone dotfile configs and set up symlinks?" \
     "Yes" setup_dotfiles \
     "No"  no_setup
 
+
+echo "Setting default shell to ZSH for $(whoami) and root user."
+
+chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
+
 echo "It is suggested to start a new terminal session to see all changes reflected."
 
 script_exit
