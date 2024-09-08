@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname "$(realpath "$0")")/../helpers/utilities.sh"
+source $LINUX_TOOLKIT_UTILITIES
 
 script_init
 install_dependencies

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "../helpers/utilities.sh"
+source $LINUX_TOOLKIT_UTILITIES
 
 script_init
 install_dependencies
