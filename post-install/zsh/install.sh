@@ -5,6 +5,7 @@ source $LINUX_TOOLKIT_UTILITIES
 script_init
 install_dependencies
 
+# TODO - fix this with new dotfile management. seems insane!! cioé lancia il dotfiles installer in pratica con un cd e poi cd back here ... bleh.
 setup_dotfiles() {
     echo "Setting up dotfiles repo"
     mkdir -p ~/git/dotfiles

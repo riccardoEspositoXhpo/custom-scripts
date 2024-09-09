@@ -12,13 +12,17 @@ echo "Setting up environment variables"
 
 CURRENT_DIR="$(dirname "$(realpath "$0")")"
 
-TOOLKIT_CONFIG="$HOME/.config/linux-toolkit/.linux-toolkit"
+TOOLKIT_CONFIG="$HOME/.config/linux-toolkit/.linux-toolkit-config"
 
 cat <<EOF > "$TOOLKIT_CONFIG"
 #!/bin/bash
 
 export LINUX_TOOLKIT_DIR=$CURRENT_DIR
 export LINUX_TOOLKIT_UTILITIES=$CURRENT_DIR/helpers/utilities.sh
+export LINUX_TOOLKIT_CONFIG=$TOOLKIT_CONFIG
 
 EOF
+
+echo "Linux Toolkit installed"
+exit 0
 

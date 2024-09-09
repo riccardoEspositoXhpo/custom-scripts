@@ -2,6 +2,43 @@
 
 # This script collects shared functions and utilities
 
+# Color and formatting codes
+RESET="\033[0m"
+BOLD="\033[1m"
+UNDERLINE="\033[4m"
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+
+# Generalized functions for formatted output
+header() {
+    echo -e "${BOLD}${BLUE}==> $1${RESET}"
+}
+
+success() {
+    echo -e "${GREEN}✔ $1${RESET}"
+}
+
+error() {
+    echo -e "${RED}✘ $1${RESET}"
+}
+
+warning() {
+    echo -e "${YELLOW}! $1${RESET}"
+}
+
+info() {
+    echo -e "${BOLD}$1${RESET}"
+}
+
+
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+
+
 script_init() {
 
     # enables Ctrl + C to kill script
@@ -299,3 +336,5 @@ pause_and_open_app() {
     done
 
 }
+
+

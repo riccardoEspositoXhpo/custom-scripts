@@ -2,21 +2,20 @@
 source $HOME/.config/linux-toolkit/.linux-toolkit-config
 source "$(dirname "$(realpath "$0")")/helpers/utilities.sh"
 
-echo "Linux Toolkit - Full Install"
+echo "Linux Toolkit - Partial Install"
 
-# Installer supports a custom install-order file for selective app installation.
+# Ensure at least one argument is provided
+if [ "$#" -eq 0 ]; then
+    echo "No packages specified. Please provide a list of packages to install."
+    exit 1
+fi
 
-INSTALL_ORDER="${1:-./install-order.txt}"
-
-# ensure file ends with a newline
-sed -i -e '$a\' $INSTALL_ORDER
-
-echo "Setting up packages, configs, scripts and files according to the order defined in $INSTALL_ORDER."
+echo "Setting up packages, configs, scripts, and files."
 
 DIR=$(pwd)
 
 # Read the list of packages from the text file
-while read package; do
+for package in "$@"; do
 
     # Skip empty lines or lines starting with '#'
     [[ -z "$package" || "$package" =~ ^# ]] && continue
@@ -41,7 +40,7 @@ while read package; do
         fi
     fi
 
-done < "$INSTALL_ORDER"
+done
 
 echo "Congratulations. All relevant packages have been installed, and all relevant configs and files are in their appropriate locations."
 exit 0

@@ -1,0 +1,3 @@
+git
+inotify-tools
+stow
