@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTIGNORE_FILE="$HOME/dotfiles/.gitignore"
+DOTIGNORE_FILE="$HOME/dotfiles/.dotignore"
 
 # Read exclusion patterns from .dotignore into an array
 mapfile -t EXCLUDE_PATTERNS < "$DOTIGNORE_FILE"

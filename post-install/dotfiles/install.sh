@@ -33,13 +33,11 @@ info "Adding $USERNAME to systemd services"
 FILES=("dotfiles-pull.service" "dotfiles-sync.service")
 
 for file in "${FILES[@]}"; do
-    sed -i "s/User=root/User=$USERNAME/"  "./scripts/$file" 
+    sed -i "s/User=root/User=$USERNAME/"  "./config/$file" 
 done
 
-
-
-install_files scripts
 install_files config
+install_files scripts
 
 
 info "Refreshing systemd services"

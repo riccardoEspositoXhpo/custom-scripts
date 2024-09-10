@@ -292,6 +292,10 @@ install_files() {
         # Skip empty lines or comments
         [[ -z "$src_file" || "$src_file" == \#* ]] && continue
 
+        # expand any variables in source of target file
+        src_file=$(expand_vars $src_file)
+        tgt_file=$(expand_vars $tgt_file)
+
         # Construct the full path to the source file
         local SRC_PATH="$ASSET_DIR/$src_file"
 
@@ -302,9 +306,20 @@ install_files() {
         fi
 
         # Install the config file to the target path with specified permissions
-        echo "Installing $SRC_PATH to $tgt_file with permissions $permissions"
+        echo "Installing $src_file to $tgt_file with permissions $permissions"
         install_file "$SRC_PATH" "$tgt_file" "install -C -D -m $permissions"
     done < "$METADATA_FILE"
+}
+
+
+expand_vars() {
+    local input="$1"
+    
+    # Use printf to handle the expansion
+    local expanded
+    expanded=$(printf "%s" "$input" | xargs -I{} bash -c 'echo {}')
+    
+    echo "$expanded"
 }
 
 
