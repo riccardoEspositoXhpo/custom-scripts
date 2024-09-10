@@ -32,6 +32,12 @@ info() {
     echo -e "${BOLD}$1${RESET}"
 }
 
+# Function to colorize external command output
+colorize_output() {
+    while IFS= read -r line; do
+        echo -e "${CYAN}${line}${RESET}"
+    done
+}
 
 command_exists() {
     command -v "$1" >/dev/null 2>&1

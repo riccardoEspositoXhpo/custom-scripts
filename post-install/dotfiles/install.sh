@@ -12,23 +12,23 @@ header "Cloning the dotfiles repo to $DOTFILES_DIR"
 mkdir -p $DOTFILES_DIR
 git clone https://github.com/riccardoEspositoXhpo/dotfiles.git $DOTFILES_DIR
 
-echo "Check if required scripts are installed"
+info "Check if required scripts are installed"
 if ! command_exists git-autopush; then
-    echo "git-autopush not installed. Exiting ..."
+    error "git-autopush not installed. Exiting ..."
     exit 1
 fi
 
 if ! command_exists git-autopull; then
-    echo "git-autopull not installed. Exiting ..."
+    error "git-autopull not installed. Exiting ..."
     # install it actually... 
     exit 1
 fi
 
-success "git-autopush and git-autopull are installed to /usr/local/bin/"
+success "git-autopush and git-autopull are installed."
 
 
 USERNAME=$(whoami)
-echo "Adding $USERNAME to systemd services"
+info "Adding $USERNAME to systemd services"
 
 FILES=("dotfiles-pull.service" "dotfiles-sync.service")
 
