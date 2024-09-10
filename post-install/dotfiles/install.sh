@@ -36,9 +36,13 @@ for file in "${FILES[@]}"; do
     sed -i "s/User=root/User=$USERNAME/"  "./scripts/$file" 
 done
 
-install_files scripts
 
-echo "Refreshing systemd services"
+
+install_files scripts
+install_files config
+
+
+info "Refreshing systemd services"
 sudo systemctl daemon-reload
 
 start_systemd dotfiles-sync.service
