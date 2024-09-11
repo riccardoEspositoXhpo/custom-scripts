@@ -9,7 +9,7 @@ install_dependencies
 setup_dotfiles() {
     echo "Setting up dotfiles repo"
     
-    # TBD - kick off the partial install with dotfiles
+    # TBD - kick off the partial install with dotfiles, or something else
 
 
 }
