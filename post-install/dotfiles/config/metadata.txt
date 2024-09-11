@@ -1,3 +1,3 @@
 .dotignore $HOME/dotfiles/.dotignore 644
-dotfiles-sync.service /etc/systemd/system/dotfiles-sync.service 644
-dotfiles-pull.service /etc/systemd/system/dotfiles-pull.service 644
+dotfiles-sync.service $HOME/.config/systemd/user/dotfiles-sync.service 644
+dotfiles-pull.service $HOME/.config/systemd/user/dotfiles-pull.service 644

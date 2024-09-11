@@ -1,3 +1,4 @@
 timeshift
 timeshift-autosnap
+grub-btrfs
 cronie

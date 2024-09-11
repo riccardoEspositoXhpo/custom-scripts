@@ -94,10 +94,29 @@ script_exit() {
 }
 
 start_systemd() {
-    echo "Enabling and starting systemctl service: $1"
-    systemctl enable --now "$1"
+    local service_name="$1"
+    local service_type="$2"
 
+    if [[ -z "$service_name" ]]; then
+        echo "Error: Service name is required."
+        echo "Usage: start_systemd <service-name> [user|system]"
+        return 1
+    fi
+
+    if [[ "$service_type" != "user" && "$service_type" != "system" ]]; then
+        echo "Error: Invalid service type. Use 'user' or 'system'."
+        return 1
+    fi
+
+    if [[ "$service_type" == "user" ]]; then
+        echo "Enabling and starting user systemd service: $service_name"
+        systemctl --user enable --now "$service_name"
+    else
+        echo "Enabling and starting systemd service: $service_name"
+        sudo systemctl enable --now "$service_name"
+    fi
 }
+
 
 install_dependencies() {
 

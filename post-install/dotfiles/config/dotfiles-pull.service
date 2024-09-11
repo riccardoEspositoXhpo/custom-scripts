@@ -1,11 +1,12 @@
 [Unit]
 Description=Auto-pull dotfiles from git repository
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
-User=resposit
 ExecStart=/usr/local/bin/git-autopull --repo dotfiles
 Restart=on-failure
+Environment=DISPLAY=:0
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

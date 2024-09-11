@@ -41,9 +41,9 @@ install_files scripts
 
 
 info "Refreshing systemd services"
-sudo systemctl daemon-reload
 
-start_systemd dotfiles-sync.service
-start_systemd dotfiles-pull.service
+sudo systemctl daemon-reload
+start_systemd dotfiles-sync.service user
+start_systemd dotfiles-pull.service user
 
 script_exit

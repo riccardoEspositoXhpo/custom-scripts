@@ -8,12 +8,9 @@ install_dependencies
 # TODO - fix this with new dotfile management. seems insane!! cioé lancia il dotfiles installer in pratica con un cd e poi cd back here ... bleh.
 setup_dotfiles() {
     echo "Setting up dotfiles repo"
-    mkdir -p ~/git/dotfiles
-    git clone https://github.com/riccardoEspositoXhpo/dotfiles.git ~/git/dotfiles
-    INSTALL_SCRIPT="~/git/dotfiles/install.sh"
-    chmod +x $INSTALL_SCRIPT
-    echo "Running install script at $INSTALL_SCRIPT."
-    $INSTALL_SCRIPT
+    
+    # TBD - kick off the partial install with dotfiles
+
 
 }
 

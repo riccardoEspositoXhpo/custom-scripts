@@ -3,7 +3,6 @@ Description=Dotfile Sync Service
 After=network.target
 
 [Service]
-User=resposit
 ExecStart=/usr/local/bin/sync-dotfiles-on-change
 Restart=always
 Environment=DISPLAY=:0
