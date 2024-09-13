@@ -1,2 +1,9 @@
 .zsh_history
+.bash_history
 .git
+.dotignore
+.zwc
+.swp
+.tmp
+.swo
+~

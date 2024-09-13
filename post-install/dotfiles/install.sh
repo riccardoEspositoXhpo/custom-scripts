@@ -39,7 +39,6 @@ done
 install_files config
 install_files scripts
 
-
 info "Refreshing systemd services"
 
 sudo systemctl daemon-reload
