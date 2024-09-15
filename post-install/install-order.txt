@@ -60,3 +60,5 @@ display-manager
 # install plymouth
 splash-screen
 
+# custom font
+fonts
