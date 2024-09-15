@@ -1,0 +1,2 @@
+sddm.conf /etc/sddm.conf 644
+theme.conf.user /usr/share/sddm/themes/sugar-candy/theme.conf.user 644

@@ -1,0 +1,1 @@
+grub /etc/default/grub 644

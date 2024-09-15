@@ -15,11 +15,14 @@ custom-scripts
 # Custom configuration files such as pacman hooks
 custom-files
 
-# Infrastructure for async cron jobs
-cron
-
 # Speed up pacman downloads
 reflector
+
+# install dotfiles
+dotfiles 
+
+# Infrastructure for async cron jobs
+cron
 
 # This is necessary to install any AUR package
 aur-helper
@@ -29,6 +32,9 @@ zsh
 
 # Clean up pacman cache
 paccache
+
+# smart app load
+preload
 
 # BTRFS backups
 timeshift
@@ -44,4 +50,10 @@ auto-cpufreq
 
 # Pacman and AUR packages with no particular configuration
 other-packages
+
+# install grub theme
+grub
+
+# install display manager and theme
+display-manager
 

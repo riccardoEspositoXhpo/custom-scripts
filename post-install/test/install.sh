@@ -3,7 +3,7 @@
 source $LINUX_TOOLKIT_UTILITIES
 
 script_init
-install_files hooks
-install_files config
+# install_dependencies
+
 script_exit
 

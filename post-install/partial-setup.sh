@@ -1,16 +1,19 @@
 #!/bin/bash
 source $HOME/.config/linux-toolkit/.linux-toolkit-config
-source "$(dirname "$(realpath "$0")")/helpers/utilities.sh"
+source $LINUX_TOOLKIT_UTILITIES
 
-echo "Linux Toolkit - Partial Install"
+# display fancy logo
+toolkit_init
+
+info "Partial Install"
 
 # Ensure at least one argument is provided
 if [ "$#" -eq 0 ]; then
-    echo "No packages specified. Please provide a list of packages to install."
+    error "No packages specified. Please provide a list of packages to install."
     exit 1
 fi
 
-echo "Setting up packages, configs, scripts, and files."
+header "Setting up packages, configs, scripts, and files."
 
 DIR=$(pwd)
 
@@ -25,22 +28,25 @@ for package in "$@"; do
     PACKAGE_DIR="$DIR/$package"
 
     if [ ! -d "$PACKAGE_DIR" ]; then
-        echo "Could not locate $PACKAGE_DIR. Skipping..."
+        warning "Could not locate $PACKAGE_DIR. Skipping..."
 
     else 
         INSTALL_SCRIPT="$PACKAGE_DIR/install.sh"
 
         if [ ! -f "$INSTALL_SCRIPT" ]; then
-            echo "Could not locate $INSTALL_SCRIPT. Skipping..."  
+            warning "Could not locate $INSTALL_SCRIPT. Skipping..."  
 
         else 
             # ensure we are installing from the package directory
             cd $PACKAGE_DIR
-            sh "./install.sh"
+            sh "install.sh"
         fi
     fi
 
 done
 
-echo "Congratulations. All relevant packages have been installed, and all relevant configs and files are in their appropriate locations."
+success "Congratulations!" 
+success "All relevant packages have been installed. "
+success "All relevant configs and files are in their appropriate locations."
+success "Enjoy!"
 exit 0

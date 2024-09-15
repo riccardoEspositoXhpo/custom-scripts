@@ -1,0 +1,15 @@
+# Custom Settings
+
+[General]
+
+Background="Backgrounds/Sddm-Wallpaper.jpg"
+
+
+ScreenWidth="1920"
+ScreenHeight="1080"
+
+BlurRadius="50"
+
+HeaderText="Welcome, Xhpo"
+
+AccentColor="#5b5b5b"

@@ -13,28 +13,16 @@ mkdir -p $DOTFILES_DIR
 git clone https://github.com/riccardoEspositoXhpo/dotfiles.git $DOTFILES_DIR
 
 info "Check if required scripts are installed"
-if ! command_exists git-autopush; then
-    error "git-autopush not installed. Exiting ..."
-    exit 1
+if ! command_exists git-autopush || ! command_exists git-autopull; then
+    warning "git helpers not installed. Installing now..."
+    cd ../custom-scripts
+    sh install.sh
 fi
 
-if ! command_exists git-autopull; then
-    error "git-autopull not installed. Exiting ..."
-    # install it actually... 
-    exit 1
-fi
+# back to this dir for install
+cd $CURRENT_DIR
 
 success "git-autopush and git-autopull are installed."
-
-
-USERNAME=$(whoami)
-info "Adding $USERNAME to systemd services"
-
-FILES=("dotfiles-pull.service" "dotfiles-sync.service")
-
-for file in "${FILES[@]}"; do
-    sed -i "s/User=root/User=$USERNAME/"  "./config/$file" 
-done
 
 install_files config
 install_files scripts
