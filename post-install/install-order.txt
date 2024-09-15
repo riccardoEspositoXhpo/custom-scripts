@@ -57,3 +57,6 @@ grub
 # install display manager and theme
 display-manager
 
+# install plymouth
+splash-screen
+
