@@ -7,9 +7,11 @@ zsh-autosuggestions
 rmtrash
 pokemon-colorscripts-git
 eza
+fzf
 zoxide
 neovim
 bat
 wl-clipboard
 ripgrep
 unrar
+unzip
