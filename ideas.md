@@ -19,3 +19,6 @@
 - I don´t really want to symlink all of them as they don't change as often
 - create update script that takes a list of files, it will search for them and copy them to the correct location.
 - I probably need a json config file that stores file names and file locations so I can easily drop them and update them - requires sudo tho.
+
+
+- Troubleshooting app? 

@@ -1,0 +1,1 @@
+plymouth.conf /etc/systemd/system/display-manager.service.d/plymouth.conf 644
