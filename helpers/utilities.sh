@@ -164,7 +164,7 @@ install_dependencies() {
     while read package; do
         
         info "  ==> $package:"
-        if pacman -Qs "$package" &> /dev/null; then
+        if pacman -Si "$package" &> /dev/null; then
 
             if pacman -Qs "$package" $> /dev/null; then
                 info "$package is already installed."
@@ -192,7 +192,7 @@ install_dependencies() {
                 fi
             fi
 
-            if "$aurhelper" -Ss "$package" &> /dev/null; then
+            if "$aurhelper" -Si "$package" &> /dev/null; then
 
                 if "$aurhelper" -Qs "$package" &> /dev/null; then
                     info "$package is already installed."
