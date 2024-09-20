@@ -164,7 +164,7 @@ install_dependencies() {
     while read package; do
         
         info "  ==> $package:"
-        if pacman -Ss "$package" &> /dev/null; then
+        if pacman -Qs "$package" &> /dev/null; then
 
             if pacman -Qs "$package" $> /dev/null; then
                 info "$package is already installed."
