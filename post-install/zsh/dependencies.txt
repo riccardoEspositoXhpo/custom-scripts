@@ -9,9 +9,8 @@ pokemon-colorscripts-git
 eza
 fzf
 zoxide
-neovim
 bat
-wl-clipboard
+micro
 ripgrep
 unrar
 unzip

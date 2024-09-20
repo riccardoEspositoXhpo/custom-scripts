@@ -8,6 +8,7 @@ loupe
 vlc
 nautilus
 baobab
+alacritty
 gnome-system-monitor
 spotify
 surfshark-client

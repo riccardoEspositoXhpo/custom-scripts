@@ -369,6 +369,7 @@ pause_and_open_app() {
     
     app="$1"
     options="$2"
+
     
     echo "Pausing installation to open $app."
     echo "Installation instructions provided below:"
@@ -392,14 +393,13 @@ pause_and_open_app() {
             VALID_OPTION=true
         elif [[ "$ANSWER" = 2 ]]; then
             echo "Opening $app"
-            $app
+            eval $app
         else
             error "Invalid option $ANSWER, please choose 1 or 2."
         fi
     done
 
 }
-
 
 
 display_countdown() {
