@@ -21,10 +21,11 @@ fi
 install_yay() {
     info "Installing yay"
     git clone https://aur.archlinux.org/yay.git ~/yay
-    makepkg -C ~/yay -si
+    cd ~/yay
+    makepkg -C -si
     aurhelper="yay" 
     info "Removing install directory for $aurhelper" 
-    rm -rf ~/$aurhelper
+   # rm -rf ~/$aurhelper
 
 }
 
@@ -32,7 +33,8 @@ install_paru() {
     info "Installing paru"
     sudo pacman -S --needed base-devel
     git clone https://aur.archlinux.org/paru.git ~/paru
-    makepkg -C ~/paru -si
+    cd ~/paru
+    makepkg -C -si
     aurhelper="paru"
     info "Removing install directory for $aurhelper" 
     rm -rf ~/$aurhelper

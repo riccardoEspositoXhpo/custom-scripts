@@ -12,7 +12,7 @@ SECONDS=5
 success "Sddm-greeter installed successfully."
 
 run() {
-    sddm-greeter --test-mode --theme /usr/share/sddm/themes/sugar-candy
+    sddm-greeter --test-mode --theme /usr/share/sddm/themes/Sugar-Candy
 }
 
 display_countdown $SECONDS run
