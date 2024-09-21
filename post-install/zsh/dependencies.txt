@@ -12,6 +12,7 @@ fd
 zoxide
 bat
 micro
+nvim
 ripgrep
 unrar
 unzip
