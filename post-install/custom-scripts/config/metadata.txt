@@ -1,0 +1,2 @@
+notify-upgrade.service $HOME/.config/systemd/user/notify-upgrade.service 755
+notify-upgrade.timer $HOME/.config/systemd/user/notify-upgrade.timer 755

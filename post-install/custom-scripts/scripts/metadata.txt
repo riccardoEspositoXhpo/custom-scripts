@@ -1,3 +1,4 @@
 git-autopull.sh /usr/local/bin/git-autopull 755
 git-autopush.sh /usr/local/bin/git-autopush 755
 print-tty-colors.sh /usr/local/bin/print-tty-colors 755
+notify-system-upgrade.sh /usr/local/bin/notify-system-upgrade 755

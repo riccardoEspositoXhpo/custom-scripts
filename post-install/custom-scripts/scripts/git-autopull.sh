@@ -21,8 +21,8 @@ usage() {
     echo "This script automagically pulls a git repository."
     echo "Usage: $0 [options]"
     echo "Options:"
-    echo "  -h, --help      Show this help message and exit"
-    echo "  --repo          Repository to pull. Defaults to current directory. Will attempt to locate it on the system via the .git folder"
+    echo "  -h, --help            Show this help message and exit"
+    echo "  git-autopull [REPO]   Repository to pull. Defaults to current directory. Will attempt to locate it on the system via the .git folder"
     exit 0
 }
 

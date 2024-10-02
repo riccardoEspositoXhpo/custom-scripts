@@ -278,24 +278,15 @@ install_file() {
         return 0
     else
         # Check if the issue is related to permissions
-        if [[ $? -ne 0 ]]; then
-            warning "Failed to install $target_file."
-            warning "Do you want to retry with elevated permissions?"
-            read -p " (Y/y to proceed): " response < /dev/tty
-
-            if [[ "$response" =~ ^[Yy]$ ]]; then
-                # Re-run the command with sudo
-                echo "Attempting to install $target_file with sudo..."
-                sudo $full_command
-                if [[ $? -eq 0 ]]; then
-                    success "Successfully installed $target_file with elevated permissions"
-                    return 0
-                else
-                    error "Failed to install $target_file even with elevated permissions."
-                    return 1
-                fi
+        if [[ $? -ne 0 ]]; then        
+            warning "File installation requires elevated permissions"
+            echo "Attempting to install $target_file with sudo..."
+            sudo $full_command
+            if [[ $? -eq 0 ]]; then
+                success "Successfully installed $target_file with elevated permissions"
+                return 0
             else
-                error "Installation of $target_file aborted by user."
+                error "Failed to install $target_file even with elevated permissions."
                 return 1
             fi
         fi
